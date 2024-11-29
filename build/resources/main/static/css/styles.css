@@ -1,0 +1,38 @@
+.navbar-brand {
+    font-weight: bold;
+}
+
+.table th {
+    background-color: #f8f9fa;
+}
+
+.btn-action {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    margin-right: 0.25rem;
+}
+
+.stock-warning {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.sale-item {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sale-item:last-child {
+    border-bottom: none;
+}
+
+.modal-lg {
+    max-width: 800px;
+}
+
+#saleTotal {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #f8f9fa;
+}
