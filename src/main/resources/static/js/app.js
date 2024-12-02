@@ -192,7 +192,8 @@ function showEditStockProductModal(id) {
 //TODO: Modal para deletar produto
 function showDeleteProductModal(id) {
     const modal = new bootstrap.Modal(document.getElementById('deleteProductModal'));
-    document.getElementById('deleteProductId').value = id;
+    const product = products.find(product => product.id === id);
+    document.getElementById('deleteProductId').value = product.id;
     modal.show();
 }
 
