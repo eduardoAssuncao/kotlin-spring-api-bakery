@@ -48,7 +48,6 @@ class ProductService(private val productRepository: ProductRepository) {
         val product = getProductEntity(id)
         return product.copy(
             quantity = quantity,
-            minimumStock = minimumStock,
             updatedAt = LocalDateTime.now()
         ).let { productRepository.save(it) }.toResponse()
     }

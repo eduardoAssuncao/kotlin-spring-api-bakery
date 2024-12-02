@@ -54,13 +54,13 @@ function displayProducts() {
             <td>${product.quantity}</td>
             <td>${product.minimumStock}</td>
             <td>
-                <button class="btn btn-sm btn-primary btn-action" onclick="editProduct(${product.id})">
+                <button class="btn btn-sm btn-primary btn-action" onclick="showEditProductModal(${product.id})">
                     <i class="bi bi-pencil"></i>
                 </button>
-                <button class="btn btn-sm btn-danger btn-action" onclick="deleteProduct(${product.id})">
+                <button class="btn btn-sm btn-danger btn-action" onclick="showDeleteProductModal(${product.id})">
                     <i class="bi bi-trash"></i>
                 </button>
-                <button class="btn btn-sm btn-success btn-action" onclick="updateStock(${product.id})">
+                <button class="btn btn-sm btn-success btn-action" onclick="showEditStockProductModal(${product.id})">
                     <i class="bi bi-box"></i>
                 </button>
             </td>
@@ -105,7 +105,100 @@ async function saveProduct() {
     }
 }
 
-async function deleteProduct(id) {
+async function editProduct() {
+    const id = document.getElementById('editProductId').value;
+
+    const editedProduct = {
+        name: document.getElementById('editProductName').value,
+        description: document.getElementById('editProductDescription').value,
+        price: parseFloat(document.getElementById('editProductPrice').value),
+        quantity: parseInt(document.getElementById('editProductQuantity').value),
+        minimumStock: parseInt(document.getElementById('editProductMinStock').value)
+    };
+
+    try {
+        const response = await fetch(`/api/products/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(editedProduct)
+        });
+
+        if (response.ok) {
+            bootstrap.Modal.getInstance(document.getElementById('editProductModal')).hide();
+            loadProducts();
+        } else {
+            alert('Erro ao editar produto');
+        }
+    } catch (error) {
+        console.error('Error editing product:', error);
+        alert('Erro ao editar produto');
+    }
+}
+
+function showEditProductModal(id) {
+    document.getElementById('editProductForm').reset();
+    const modal = new bootstrap.Modal(document.getElementById('editProductModal'));
+    const product = products.find(product => product.id === id);
+    document.getElementById('editProductId').value = product.id;
+    document.getElementById('editProductName').value = product.name;
+    document.getElementById('editProductDescription').value = product.description;
+    document.getElementById('editProductPrice').value = product.price;
+    document.getElementById('editProductQuantity').value = product.quantity;
+    document.getElementById('editProductMinStock').value = product.minimumStock;
+    modal.show();
+}
+
+async function editStockProduct() {
+    const id = document.getElementById('editStockProductId').value;
+
+    const editedStockProduct = {
+        quantity: parseInt(document.getElementById('editStockProductQuantity').value),
+        minimumStock: parseInt(document.getElementById('editStockProductMinStock').value)
+    };
+
+    try {
+        const response = await fetch(`/api/products/${id}/stock`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(editedStockProduct)
+        });
+
+        if (response.ok) {
+            bootstrap.Modal.getInstance(document.getElementById('editStockProductModal')).hide();
+            loadProducts();
+        } else {
+            alert('Erro ao editar estoque do produto');
+        }
+    } catch (error) {
+        console.error('Error editing stock product:', error);
+        alert('Erro ao editar estoque do produto');
+    }
+}
+
+function showEditStockProductModal(id) {
+    document.getElementById('editStockProductForm').reset();
+    const modal = new bootstrap.Modal(document.getElementById('editStockProductModal'));
+    const product = products.find(product => product.id === id);
+    document.getElementById('editStockProductId').value = product.id;
+    document.getElementById('editStockProductQuantity').value = product.quantity;
+    document.getElementById('editStockProductMinStock').value = product.minimumStock;
+    modal.show();
+}
+
+//TODO: Modal para deletar produto
+function showDeleteProductModal(id) {
+    const modal = new bootstrap.Modal(document.getElementById('deleteProductModal'));
+    document.getElementById('deleteProductId').value = id;
+    modal.show();
+}
+
+async function deleteProduct() {
+    const id = document.getElementById('deleteProductId').value;
+
     if (!confirm('Tem certeza que deseja excluir este produto?')) {
         return;
     }

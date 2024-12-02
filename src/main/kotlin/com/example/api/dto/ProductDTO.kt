@@ -21,5 +21,6 @@ data class ProductResponse(
 )
 
 data class StockUpdateRequest(
-    val quantity: Int
+    val quantity: Int,
+    val minimumStock: Int
 )

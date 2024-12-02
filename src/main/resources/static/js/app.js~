@@ -197,7 +197,7 @@ function showDeleteProductModal(id) {
 }
 
 async function deleteProduct() {
-    const id = document.getElementById('deleteProductId').value;
+    const id = document.getElementById('editStockProductId').value;
 
     if (!confirm('Tem certeza que deseja excluir este produto?')) {
         return;

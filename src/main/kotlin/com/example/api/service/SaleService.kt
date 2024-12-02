@@ -37,7 +37,7 @@ class SaleService(
             }
             
             // Update product stock
-            productService.updateStock(product.id!!, product.quantity - item.quantity)
+            productService.updateStock(product.id!!, product.quantity - item.quantity, product.minimumStock)
             
             SaleItem(
                 product = product,

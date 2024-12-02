@@ -44,7 +44,7 @@ class ProductController(private val productService: ProductService) {
         @PathVariable id: Long,
         @RequestBody request: StockUpdateRequest
     ): ResponseEntity<ProductResponse> =
-        ResponseEntity.ok(productService.updateStock(id, request.quantity))
+        ResponseEntity.ok(productService.updateStock(id, request.quantity, request.minimumStock))
 
     @DeleteMapping("/{id}")
     fun deleteProduct(@PathVariable id: Long): ResponseEntity<Unit> {

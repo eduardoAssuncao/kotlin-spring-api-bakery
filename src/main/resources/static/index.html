@@ -143,6 +143,93 @@
         </div>
     </div>
 
+    <!-- Edit Product Modal -->
+    <div class="modal fade" id="editProductModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Atualizar Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="editProductName" required>
+                            <input type="hidden" id="editProductId">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <textarea class="form-control" id="editProductDescription" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Preço</label>
+                            <input type="number" step="0.01" class="form-control" id="editProductPrice" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Quantidade</label>
+                            <input type="number" class="form-control" id="editProductQuantity" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Estoque Mínimo</label>
+                            <input type="number" class="form-control" id="editProductMinStock" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="editProduct()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Stock Product Modal -->
+    <div class="modal fade" id="editStockProductModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Atualizar Estoque Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editStockProductForm">
+                        <div class="mb-3">
+                            <label class="form-label">Quantidade</label>
+                            <input type="number" class="form-control" id="editStockProductQuantity" required>
+                            <input type="hidden" id="editStockProductId">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Estoque Mínimo</label>
+                            <input type="number" class="form-control" id="editStockProductMinStock" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="editStockProduct()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Product Modal -->
+    <div class="modal fade" id="deleteProductModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Deletar Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="deleteProductId">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteProduct()">Deletar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- New Sale Modal -->
     <div class="modal fade" id="newSaleModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
