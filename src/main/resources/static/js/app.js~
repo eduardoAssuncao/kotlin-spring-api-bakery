@@ -200,16 +200,17 @@ function showDeleteProductModal(id) {
 async function deleteProduct() {
     const id = document.getElementById('deleteProductId').value;
 
-    if (!confirm('Tem certeza que deseja excluir este produto?')) {
-        return;
-    }
-    
+    // if (!confirm('Tem certeza que deseja excluir este produto?')) {
+    //     return;
+    // }
+
     try {
         const response = await fetch(`/api/products/${id}`, {
             method: 'DELETE'
         });
 
         if (response.ok) {
+            bootstrap.Modal.getInstance(document.getElementById('deleteProductModal')).hide();
             loadProducts();
         } else {
             alert('Erro ao excluir produto');

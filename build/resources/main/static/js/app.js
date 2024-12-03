@@ -189,7 +189,7 @@ function showEditStockProductModal(id) {
     modal.show();
 }
 
-//TODO: Modal para deletar produto
+//TODO: Adicionar condição para deletar produto mesmo que ele tenha vendas ou que esteja com estoque baixo
 function showDeleteProductModal(id) {
     const modal = new bootstrap.Modal(document.getElementById('deleteProductModal'));
     const product = products.find(product => product.id === id);
@@ -203,13 +203,14 @@ async function deleteProduct() {
     // if (!confirm('Tem certeza que deseja excluir este produto?')) {
     //     return;
     // }
-    return;
+
     try {
         const response = await fetch(`/api/products/${id}`, {
             method: 'DELETE'
         });
 
         if (response.ok) {
+            bootstrap.Modal.getInstance(document.getElementById('deleteProductModal')).hide();
             loadProducts();
         } else {
             alert('Erro ao excluir produto');

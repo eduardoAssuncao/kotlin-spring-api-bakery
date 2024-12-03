@@ -36,9 +36,9 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: ${POSTGRES_URL}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    url: ${DATABASE_URL}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -52,4 +52,4 @@ spring:
       data-locations: classpath:data.sql
 
 server:
-  port: ${PORT:8080}
+  port: ${PGPORT}

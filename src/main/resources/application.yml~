@@ -52,4 +52,4 @@ spring:
       data-locations: classpath:data.sql
 
 server:
-  port: ${PGPORT}
+  port: ${PORT:8080}
